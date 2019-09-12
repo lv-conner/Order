@@ -1,0 +1,44 @@
+﻿@page "/order"
+@using Services;
+@using Dto;
+@inject IOrderService OrderService
+
+@if (OrderDatas == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
+    <table class="table table-striped table-bordered table-sm">
+        <thead>
+            <tr>
+                <th>订单Id</th>
+                <th>产品名称</th>
+                <th>订购数量</th>
+                <th>产品单价</th>
+                <th>备注</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var order in OrderDatas)
+            {
+                <tr>
+                    <td>@order.OrderId.ToString()</td>
+                    <td>@order.ProductName</td>
+                    <td>@order.Quantity</td>
+                    <td>@order.UnitPrice</td>
+                    <td>@order.Remark</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+    List<OrderDto> OrderDatas;
+
+    protected async override Task OnInitializedAsync()
+    {
+        OrderDatas = (await OrderService.GetOrderDataAsync()).ToList();
+    }
+}
