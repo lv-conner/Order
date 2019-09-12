@@ -1,4 +1,5 @@
-﻿using GrpcOrderService;
+﻿using AutoMapper;
+using GrpcOrderService;
 using Services;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         public static IServiceCollection AddGrpcOrderService(this IServiceCollection services)
         {
+            services.AddAutoMapper(typeof(GrpcOrderServiceExtensions).Assembly);
             services.AddSingleton<IOrderService, OrderService>();
             return services;
         }
