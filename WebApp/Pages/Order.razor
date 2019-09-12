@@ -1,33 +1,45 @@
 ﻿@page "/order"
 @using Services;
 @using Dto;
-@inject IOrderService OrderService
+@inject IOrderListService OrderService
 
+<div aria-label="order-toolbar">
+    <button type="button" @onclick="@( e => ShowModelForm(true))" class="btn btn-sm btn-secondary"><i class="fa fa-plus" aria-hidden="true"></i>Add</button>
+    <button type="button" @onclick="RefreshData" class="btn btn-sm btn-secondary"><i class="fa fa-refresh" aria-hidden="true"></i>Refresh</button>
+</div>
+
+<Modal OnConfirm="() => ShowModelForm(false)" 
+       OnCancel="() => ShowModelForm(false)" 
+       ModelTitle="Create Purchase Order"
+       ShowFooter="false"
+       Show="ShowForm" >
+    <OrderForm OnCancel="OnCancelOrder" OnConfirm="OnAddOrder" />
+</Modal>
 @if (OrderDatas == null)
 {
     <p><em>Loading...</em></p>
 }
 else
 {
-    <table class="table table-striped table-bordered table-sm">
+    <table class="table table-striped table-bordered order-table">
         <thead>
             <tr>
-                <th>订单Id</th>
-                <th>产品名称</th>
-                <th>订购数量</th>
-                <th>产品单价</th>
-                <th>备注</th>
+                <th class="center-td">Order Id</th>
+                <th class="center-td">Product Name</th>
+                <th class="center-td">Quantity</th>
+                <th class="center-td">Unit Price</th>
+                <th class="center-td">Remark</th>
             </tr>
         </thead>
         <tbody>
             @foreach (var order in OrderDatas)
             {
                 <tr>
-                    <td>@order.OrderId.ToString()</td>
-                    <td>@order.ProductName</td>
-                    <td>@order.Quantity</td>
-                    <td>@order.UnitPrice</td>
-                    <td>@order.Remark</td>
+                    <td class="center-td">@order.OrderId</td>
+                    <td class="center-td">@order.ProductName</td>
+                    <td class="center-td">@order.Quantity</td>
+                    <td class="center-td">@order.UnitPrice</td>
+                    <td class="center-td">@order.Remark</td>
                 </tr>
             }
         </tbody>
@@ -36,9 +48,29 @@ else
 
 @code {
     List<OrderDto> OrderDatas;
-
+    bool ShowForm = false;
     protected async override Task OnInitializedAsync()
     {
         OrderDatas = (await OrderService.GetOrderDataAsync()).ToList();
+    }
+    private async Task RefreshData()
+    {
+        OrderDatas = (await OrderService.GetOrderDataAsync()).ToList();
+    }
+    private void ShowModelForm(bool value)
+    {
+        ShowForm = value;
+    }
+    private async Task OnAddOrder()
+    {
+        await RefreshData();
+        ShowModelForm(false);
+        StateHasChanged();
+    }
+    private Task OnCancelOrder()
+    {
+        ShowModelForm(false);
+        StateHasChanged();
+        return Task.CompletedTask;
     }
 }

@@ -1,0 +1,43 @@
+﻿<!-- Modal -->
+<div class="@ModalClass" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" @onclick="OnCancel" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @ChildContent
+            </div>
+            @if (ShowFooter)
+            {
+                <div class="modal-footer">
+                    <button type="button" @onclick="OnCancel" class="btn btn-secondary" data-dismiss="modal">@CancelText</button>
+                    <button type="button" @onclick="OnConfirm" class="btn btn-primary">@ConfiremText</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@code {
+    [Parameter]
+    public bool Show { get; set; } = false;
+    string ModalClass => Show ? "modal fade show block-modal" : "modal fade";
+    [Parameter]
+    public string ModelTitle { get; set; } = "Modal title";
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnConfirm { get; set; }
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnCancel { get; set; }
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+    [Parameter]
+    public string CancelText { get; set; } = "Cancel";
+    [Parameter]
+    public string ConfiremText { get; set; } = "Confirm";
+    [Parameter]
+    public bool ShowFooter { get; set; } = true;
+
+}

@@ -148,3 +148,25 @@ app {
         display: block;
     }
 }
+
+
+.block-modal{
+    display:block;
+}
+
+.order-table{
+    table-layout:fixed;
+    margin:4px 0px;
+}
+.center-td{
+    text-align:center;
+}
+.order-form-operation {
+    display: flex;
+    flex-direction: row;
+    flex-wrap:nowrap;
+    justify-content: flex-end;
+}
+.btn-order-form{
+    margin:0 16px;
+}

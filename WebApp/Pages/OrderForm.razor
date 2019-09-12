@@ -1,0 +1,49 @@
+﻿@using Dto;
+@using Services;
+@inject  IAddOrderService OrderService;
+<div class="order-form">
+    <div class="form-group">
+        <label for="ProdutName">Product Name:</label>
+        <input type="text" @bind="Model.ProductName" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Product Name" />
+    </div>
+    <div class="form-group">
+        <label for="Quantity">Quantity:</label>
+        <input type="number" @bind="Model.Quantity" class="form-control" id="Quantity" placeholder="Enter Quantity" />
+    </div>
+    <div class="form-group">
+        <label for="UnitPrice">Unit Price:</label>
+        <input type="number" @bind="Model.UnitPrice" class="form-control" id="UnitPrice" placeholder="UnitPrice" />
+    </div>
+    <div class="form-group">
+        <label for="">Remark:</label>
+        <input type="text" @bind="Model.Remark" class="form-control" id="Remark" placeholder="Remark" />
+    </div>
+    <div class="form-group order-form-operation">
+        <button type="button" @onclick="CancelOrderAsync" class="btn btn-danger btn-order-form" data-dismiss="modal">Cancel</button>
+        <button type="button" @onclick="AddOrderAsync" class="btn btn-primary">Create Order</button>
+    </div>
+</div>
+
+@code {
+    [Parameter]
+    public OrderDto Model { get; set; } = new OrderDto();
+    [Parameter]
+    public Func<Task> OnCancel { get; set; }
+    [Parameter]
+    public Func<Task> OnConfirm { get; set; }
+    public async Task AddOrderAsync()
+    {
+        await OrderService.AddOrder(Model);
+        if(OnConfirm!= null)
+        {
+            await OnConfirm();
+        }
+    }
+    public async Task CancelOrderAsync()
+    {
+        if(OnCancel != null)
+        {
+            await OnCancel();
+        }
+    }
+}

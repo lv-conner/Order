@@ -5,10 +5,8 @@ using System.Threading.Tasks;
 
 namespace Services
 {
-    public interface IOrderService
+    public interface IOrderService : IAddOrderService, IOrderListService
     {
-        Task<IEnumerable<OrderDto>> GetOrderDataAsync();
-        Task AddOrder(OrderDto orderData);
         Task<OrderDto> GetOrderDataByOrderId(string orderId);
     }
 }

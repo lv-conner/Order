@@ -11,7 +11,10 @@ namespace Microsoft.Extensions.DependencyInjection
     {
         public static IServiceCollection AddTestService(this IServiceCollection services)
         {
-            services.AddSingleton<IOrderService, MemoryOrderService>();
+            var service = new MemoryOrderService();
+            services.AddSingleton<IOrderService>(service);
+            services.AddSingleton<IAddOrderService>(service);
+            services.AddSingleton<IOrderListService>(service);
             return services;
         }
     }

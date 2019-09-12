@@ -18,7 +18,7 @@ namespace Dto
             Remark = remark;
         }
         public OrderDto(string productName, int quantity, int unitprice, string remark = null)
-            : this(Guid.NewGuid().ToString(), productName, quantity, unitprice, remark)
+            : this(Guid.NewGuid().ToString().Substring(0,4), productName, quantity, unitprice, remark)
         {
         }
         public string OrderId { get; private set; }
