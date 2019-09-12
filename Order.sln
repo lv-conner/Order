@@ -5,38 +5,42 @@ VisualStudioVersion = 16.0.29230.61
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{F148405F-05DA-49F8-BFE9-32320034958B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApp", "WebApp\WebApp.csproj", "{2D41B3B0-15B8-4F0D-B345-1C9060225398}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApp", "WebApp\WebApp.csproj", "{2D41B3B0-15B8-4F0D-B345-1C9060225398}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{0EB29B52-7245-48D4-8403-722E2388A8E3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Services", "Services\Services.csproj", "{A366BDB8-6E64-4A2D-8164-97DA977CEABC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Services", "Services\Services.csproj", "{A366BDB8-6E64-4A2D-8164-97DA977CEABC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dto", "Dto\Dto.csproj", "{C8F90ED9-66FE-4B63-8EC6-1BF2DD32B5F2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dto", "Dto\Dto.csproj", "{C8F90ED9-66FE-4B63-8EC6-1BF2DD32B5F2}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Grpc", "Grpc", "{6AC308E1-5844-42DF-9ADD-A9AD94CB5F2B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderGrpc.Server", "OrderGrpc\OrderGrpc.Server.csproj", "{5ACE8EEE-CA97-488F-B7A9-6BA27C1445E3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderGrpc.Server", "OrderGrpc\OrderGrpc.Server.csproj", "{5ACE8EEE-CA97-488F-B7A9-6BA27C1445E3}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Proto", "Proto", "{E8B1AE42-C21B-4461-A58E-57B9E190CB51}"
 	ProjectSection(SolutionItems) = preProject
 		Proto\OrderGrpcService.proto = Proto\OrderGrpcService.proto
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderGrpc.Client", "OrderGrpc.Client\OrderGrpc.Client.csproj", "{85FEA974-7C37-4937-A506-640F5364AC7F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderGrpc.Client", "OrderGrpc.Client\OrderGrpc.Client.csproj", "{85FEA974-7C37-4937-A506-640F5364AC7F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GrpcOrderService", "GrpcOrderService\GrpcOrderService.csproj", "{E634526C-F454-4BCF-BD5F-30C5554AE610}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GrpcOrderService", "GrpcOrderService\GrpcOrderService.csproj", "{E634526C-F454-4BCF-BD5F-30C5554AE610}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{4E343450-6A44-499F-BF86-5727C2C9C54F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Host", "Host", "{96B66E47-D397-4C37-83DE-B7CF7F1FC91D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderGrpcServiceHost", "OrderGrpcServiceHost\OrderGrpcServiceHost.csproj", "{879A0702-BF45-4256-9295-AE50B778F7CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderGrpcServiceHost", "OrderGrpcServiceHost\OrderGrpcServiceHost.csproj", "{879A0702-BF45-4256-9295-AE50B778F7CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderGrpcServerImplement", "OrderGrpcServerImplement\OrderGrpcServerImplement.csproj", "{6BC4224F-833A-4AAC-AAE8-064D73BEB384}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderGrpcServerImplement", "OrderGrpcServerImplement\OrderGrpcServerImplement.csproj", "{6BC4224F-833A-4AAC-AAE8-064D73BEB384}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{FE88BBC9-E6D9-46B4-B9FE-445F32496014}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Repository", "Repository\Repository.csproj", "{FE88BBC9-E6D9-46B4-B9FE-445F32496014}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrderGrpcServiceWorkerServiceHost", "OrderGrpcServiceWorkerServiceHost\OrderGrpcServiceWorkerServiceHost.csproj", "{7EEE1A2A-F8E2-40F2-B797-446B0AD2230A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OrderGrpcServiceWorkerServiceHost", "OrderGrpcServiceWorkerServiceHost\OrderGrpcServiceWorkerServiceHost.csproj", "{7EEE1A2A-F8E2-40F2-B797-446B0AD2230A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Entity", "Entity\Entity.csproj", "{888F4B8F-E02E-43B7-99AE-3918B53377DA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EFCoreRepository", "EFCoreRepository\EFCoreRepository.csproj", "{770A415A-584B-4884-972D-4BF419990CE3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -84,6 +88,14 @@ Global
 		{7EEE1A2A-F8E2-40F2-B797-446B0AD2230A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7EEE1A2A-F8E2-40F2-B797-446B0AD2230A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7EEE1A2A-F8E2-40F2-B797-446B0AD2230A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{888F4B8F-E02E-43B7-99AE-3918B53377DA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{888F4B8F-E02E-43B7-99AE-3918B53377DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{888F4B8F-E02E-43B7-99AE-3918B53377DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{888F4B8F-E02E-43B7-99AE-3918B53377DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{770A415A-584B-4884-972D-4BF419990CE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{770A415A-584B-4884-972D-4BF419990CE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{770A415A-584B-4884-972D-4BF419990CE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{770A415A-584B-4884-972D-4BF419990CE3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -99,6 +111,8 @@ Global
 		{6BC4224F-833A-4AAC-AAE8-064D73BEB384} = {6AC308E1-5844-42DF-9ADD-A9AD94CB5F2B}
 		{FE88BBC9-E6D9-46B4-B9FE-445F32496014} = {0EB29B52-7245-48D4-8403-722E2388A8E3}
 		{7EEE1A2A-F8E2-40F2-B797-446B0AD2230A} = {96B66E47-D397-4C37-83DE-B7CF7F1FC91D}
+		{888F4B8F-E02E-43B7-99AE-3918B53377DA} = {0EB29B52-7245-48D4-8403-722E2388A8E3}
+		{770A415A-584B-4884-972D-4BF419990CE3} = {0EB29B52-7245-48D4-8403-722E2388A8E3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {259D5097-BD42-42F2-8BB2-94BE1DF92455}

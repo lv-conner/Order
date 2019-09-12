@@ -8,16 +8,13 @@
     <button type="button" @onclick="RefreshData" class="btn btn-sm btn-info"><i class="fa icon-btn fa-refresh" aria-hidden="true"></i>Refresh</button>
 </div>
 
-@if (ShowForm)
-{
-    <Modal OnConfirm="() => ShowModelForm(false)"
-           OnCancel="() => ShowModelForm(false)"
-           ModelTitle="Create Purchase Order"
-           ShowFooter="false"
-           Show="ShowForm">
-        <OrderForm OnCancel="OnCancelOrder" OnConfirm="OnAddOrder" />
-    </Modal>
-}
+<Modal OnConfirm="() => ShowModelForm(false)"
+       OnCancel="() => ShowModelForm(false)"
+       ModelTitle="Create Purchase Order"
+       ShowFooter="false"
+       Show="ShowForm">
+    <OrderForm OnCancel="OnCancelOrder" OnConfirm="OnAddOrder" />
+</Modal>
 
 @if (OrderDatas == null)
 {

@@ -1,20 +1,41 @@
-﻿using Google.Protobuf.WellKnownTypes;
+﻿using Entity;
+using Google.Protobuf.WellKnownTypes;
 using Grpc.Core;
 using OrderGrpcService;
+using Repository;
 using System;
 using System.Threading.Tasks;
+using System.Linq;
 
 namespace OrderGrpcServerImplement
 {
     public class GrpcOrderService: OrderRpcService.OrderRpcServiceBase
     {
-        public override Task<Empty> AddOrder(Order request, ServerCallContext context)
+        private readonly IRepository<OrderEntity> _repository;
+        private static Empty SuccessResponse = new Empty();
+        public GrpcOrderService(IRepository<OrderEntity> repository)
         {
-            return base.AddOrder(request, context);
+            _repository = repository;
         }
-        public override Task<OrderListReply> GetOrderList(OrderListRequest request, ServerCallContext context)
+        public override async Task<Empty> AddOrder(Order request, ServerCallContext context)
         {
-            return base.GetOrderList(request, context);
+            var orderEntity = new OrderEntity(request.ProductName, request.Quantity, request.UnitPrice, request.Remark);
+            await _repository.AddAsync(orderEntity);
+            return SuccessResponse;
+        }
+        public override async Task<OrderListReply> GetOrderList(OrderListRequest request, ServerCallContext context)
+        {
+            var list = await _repository.QueryAllAsync(p => new Order()
+            {
+                OrderId = p.OrderId,
+                ProductName = p.ProductName,
+                Quantity = p.Quantity,
+                UnitPrice = p.UnitPrice,
+                Remark = p.Remark
+            });
+            var reply = new OrderListReply();
+            reply.Orders.AddRange(list);
+            return reply;
         }
     }
 }
