@@ -16,7 +16,9 @@ namespace Microsoft.Extensions.DependencyInjection
         {
             services.AddGrpcClient<OrderRpcService.OrderRpcServiceClient>(configureClient);
             services.AddAutoMapper(typeof(GrpcOrderServiceExtensions).Assembly);
-            services.AddSingleton<IOrderService, OrderService>();
+            services.AddScoped<IAddOrderService, OrderService>();
+            services.AddScoped<IOrderListService, OrderService>();
+            services.AddScoped<IOrderService, OrderService>();
             return services;
         }
     }

@@ -28,6 +28,10 @@ namespace WebApp
             services.AddRazorPages();
             services.AddServerSideBlazor();
             services.AddTestService();
+            services.AddGrpcOrderService(options =>
+            {
+                options.Address = new Uri("https://localhost:8888");
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -8,6 +8,6 @@ namespace Services
 {
     public interface IAddOrderService
     {
-        Task AddOrder(OrderDto orderData);
+        Task AddOrderAsync(OrderDto orderData);
     }
 }

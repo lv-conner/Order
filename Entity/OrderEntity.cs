@@ -4,6 +4,10 @@ namespace Entity
 {
     public class OrderEntity
     {
+        private OrderEntity()
+        {
+
+        }
         public OrderEntity(string orderId, string productName, int quantity, int unitprice, string remark = null)
         {
             OrderId = orderId;

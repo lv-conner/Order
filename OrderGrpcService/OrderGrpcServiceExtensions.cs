@@ -8,6 +8,11 @@ namespace Microsoft.Extensions.DependencyInjection
 {
     public static class OrderGrpcServiceExtensions
     {
+        public static IServiceCollection AddOrderGrpcRepository(this IServiceCollection services)
+        {
+            services.AddScoped(typeof(IRepository<>), typeof(OrderDbRepository<>));
+            return services;
+        }
         public static IServiceCollection AddOrderGrpcRepository(this IServiceCollection services,Action<DbContextOptionsBuilder> options)
         {
             services.AddScoped(typeof(IRepository<>), typeof(OrderDbRepository<>));

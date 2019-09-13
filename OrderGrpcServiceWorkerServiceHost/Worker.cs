@@ -27,7 +27,7 @@ namespace OrderGrpcServiceWorkerServiceHost
             {
                 _server = new Server()
                 {
-                    Services = { OrderRpcService.BindService(new GrpcOrderService()) },
+                    Services = { OrderRpcService.BindService(new GrpcOrderService(null)) },
                     Ports = { new ServerPort("localhost", 9999, ServerCredentials.Insecure) }
                 };
                 _server.Start();

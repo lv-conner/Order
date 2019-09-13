@@ -33,7 +33,7 @@
     public Func<Task> OnConfirm { get; set; }
     public async Task AddOrderAsync()
     {
-        await OrderService.AddOrder(Model);
+        await OrderService.AddOrderAsync(Model);
         if(OnConfirm!= null)
         {
             await OnConfirm();

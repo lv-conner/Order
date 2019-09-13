@@ -21,7 +21,7 @@ namespace WebApp.Test
                 ,new OrderDto("牛奶", 10, 10, "hahah")
             };
         }
-        public Task AddOrder(OrderDto orderData)
+        public Task AddOrderAsync(OrderDto orderData)
         {
             _orderDatas.Add(orderData);
             return Task.CompletedTask;
