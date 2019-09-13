@@ -28,7 +28,6 @@ namespace OrderGrpcServiceWorkerServiceHost
                         {
                         });
                     });
-                    services.AddOrderGrpcRepository();
                     services.AddScoped<OrderRpcService.OrderRpcServiceBase, GrpcOrderService>();
                     services.AddHostedService<Worker>();
                 });
