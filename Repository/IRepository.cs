@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Repository
 {
-    public interface IRepository<T>
+    public interface IRepository<T> where T : class
     {
         void Add(T entity);
         Task AddAsync(T entity);
