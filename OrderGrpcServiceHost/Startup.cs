@@ -26,13 +26,12 @@ namespace OrderGrpcServiceHost
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            var asmName = typeof(Startup).Assembly.FullName;
             services.AddGrpc();
             services.AddOrderGrpcRepository(options =>
             {
                 options.UseSqlServer(_configuration.GetValue<string>("OrderConnectionString"), config =>
                 {
-                    config.MigrationsAssembly(asmName);
+
                 });
             });
         }

@@ -8,6 +8,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using OrderGrpcServerImplement;
 using OrderGrpcService;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace OrderGrpcServiceWorkerServiceHost
 {
@@ -15,21 +16,26 @@ namespace OrderGrpcServiceWorkerServiceHost
     {
         private readonly ILogger<Worker> _logger;
         private Server _server;
-
-        public Worker(ILogger<Worker> logger)
+        private readonly IServiceProvider _serviceProvider;
+        public Worker(IServiceProvider serviceProvider,ILogger<Worker> logger)
         {
             _logger = logger;
+            _serviceProvider = serviceProvider;
         }
 
         protected override Task ExecuteAsync(CancellationToken stoppingToken)
         {
             if (!stoppingToken.IsCancellationRequested)
             {
-                _server = new Server()
+                using (var scope = _serviceProvider.CreateScope())
                 {
-                    Services = { OrderRpcService.BindService(new GrpcOrderService(null)) },
-                    Ports = { new ServerPort("localhost", 9999, ServerCredentials.Insecure) }
-                };
+                    _server = new Server()
+                    {
+
+                        Services = { OrderRpcService.BindService(scope.ServiceProvider.GetService<OrderRpcService.OrderRpcServiceBase>()) },
+                        Ports = { new ServerPort("localhost", 8888, ServerCredentials.Insecure) }
+                    };
+                }
                 _server.Start();
             }
             return Task.CompletedTask;
