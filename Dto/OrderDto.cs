@@ -21,10 +21,10 @@ namespace Dto
             : this(Guid.NewGuid().ToString().Substring(0,4), productName, quantity, unitprice, remark)
         {
         }
-        public string OrderId { get; private set; }
-        public string ProductName { get; set; }
+        public string OrderId { get; private set; } = "";
+        public string ProductName { get; set; } = "";
         public int Quantity { get; set; }
         public int UnitPrice { get; set; }
-        public string Remark { get; set; }
+        public string Remark { get; set; } = "";
     }
 }

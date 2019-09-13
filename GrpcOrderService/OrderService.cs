@@ -20,13 +20,7 @@ namespace GrpcOrderService
         }
         public async Task AddOrderAsync(OrderDto orderData)
         {
-            var order = new Order()
-            {
-                ProductName = orderData.ProductName,
-                Quantity = orderData.Quantity,
-                UnitPrice = orderData.UnitPrice,
-                Remark = orderData.Remark
-            };
+            var order = _mapper.Map<Order>(orderData);
             await _orderRpcServiceClient.AddOrderAsync(order);
         }
 
