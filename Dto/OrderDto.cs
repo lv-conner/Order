@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace Dto
 {
@@ -22,9 +23,13 @@ namespace Dto
         {
         }
         public string OrderId { get; private set; } = "";
+        [Required(AllowEmptyStrings = false,ErrorMessage = "Product name is required!")]
         public string ProductName { get; set; } = "";
+        [Range(0, int.MaxValue, ErrorMessage = "Quantity must greater or equal to 0!")]
         public int Quantity { get; set; }
+        [Range(0, int.MaxValue, ErrorMessage = "UnitPrice must greater or equal to 0!")]
         public int UnitPrice { get; set; }
+        [MaxLength(200,ErrorMessage = "Remark should less than 200!")]
         public string Remark { get; set; } = "";
     }
 }

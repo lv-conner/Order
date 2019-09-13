@@ -1,8 +1,9 @@
 ﻿@page "/order"
 @using Services;
 @using Dto;
+@using Microsoft.AspNetCore.Components;
 @inject IOrderListService OrderService
-
+@inject NavigationManager NavigationManager
 <div aria-label="order-toolbar">
     <button type="button" @onclick="@( e => ShowModelForm(true))" class="btn btn-sm btn-primary"><i class="fa icon-btn fa-plus" aria-hidden="true"></i>Add</button>
     <button type="button" @onclick="RefreshData" class="btn btn-sm btn-info"><i class="fa icon-btn fa-refresh" aria-hidden="true"></i>Refresh</button>
@@ -56,11 +57,18 @@ else
     bool ShowForm = false;
     protected async override Task OnInitializedAsync()
     {
-        OrderDatas = (await OrderService.GetOrderDataAsync()).ToList();
+        await RefreshData();
     }
     private async Task RefreshData()
     {
-        OrderDatas = (await OrderService.GetOrderDataAsync()).ToList();
+        await SafeExecAsync(async () =>
+        {
+            OrderDatas = (await OrderService.GetOrderDataAsync()).ToList();
+        }, () =>
+        {
+            OrderDatas = null;
+
+        });
     }
     private void ShowModelForm(bool value)
     {
@@ -77,5 +85,17 @@ else
         ShowModelForm(false);
         StateHasChanged();
         return Task.CompletedTask;
+    }
+    private async Task SafeExecAsync(Func<Task> func,Action exceptionCallback=null)
+    {
+        try
+        {
+            await func();
+        }
+        catch(Exception ex)
+        {
+            exceptionCallback?.Invoke();
+            NavigationManager.NavigateTo("error");
+        }
     }
 }
