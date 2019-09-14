@@ -152,6 +152,7 @@ app {
 
 .block-modal {
     display: block;
+    z-index:600;
 }
 
 .order-table {
