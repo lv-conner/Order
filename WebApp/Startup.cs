@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Grpc.Core;
+using GrpcOrderService;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
@@ -27,11 +29,7 @@ namespace WebApp
         {
             services.AddRazorPages();
             services.AddServerSideBlazor();
-            services.AddTestService();
-            services.AddGrpcOrderService(options =>
-            {
-                options.Address = new Uri("https://localhost:8888");
-            });
+            services.AddGrpcOrderService(Configuration.GetSection("GrpcOrderServiceOptions").Get<GrpcOrderServiceOptions>());
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

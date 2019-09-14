@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Grpc.Core;
 using Grpc.Net.ClientFactory;
 using GrpcOrderService;
 using OrderGrpcService;
@@ -12,8 +13,28 @@ namespace Microsoft.Extensions.DependencyInjection
 {
     public static class GrpcOrderServiceExtensions
     {
-        public static IServiceCollection AddGrpcOrderService(this IServiceCollection services, Action<GrpcClientFactoryOptions> configureClient)
+        public static IServiceCollection AddGrpcOrderService(this IServiceCollection services, GrpcOrderServiceOptions options)
         {
+            if(options.GrpcOrderServiceAddres == null)
+            {
+                throw new ArgumentNullException(nameof(GrpcOrderServiceOptions.GrpcOrderServiceAddres));
+            }
+            if(!options.GrpcOrderServiceAddres.IsAbsoluteUri)
+            {
+                throw new ArgumentException($"{nameof(GrpcOrderServiceOptions.GrpcOrderServiceAddres)} isn't absolute uri!");
+            }
+            Action<GrpcClientFactoryOptions> configureClient = op =>
+            {
+                op.Address = options.GrpcOrderServiceAddres;
+                if (!options.IsHttps)
+                {
+                    AppContext.SetSwitch("System.Net.Http.SocketsHttpHandler.Http2UnencryptedSupport", true);
+                    op.ChannelOptionsActions.Add(channelOptions =>
+                    {
+                        channelOptions.Credentials = ChannelCredentials.Insecure;
+                    });
+                }
+            };
             services.AddGrpcClient<OrderRpcService.OrderRpcServiceClient>(configureClient);
             services.AddAutoMapper(typeof(GrpcOrderServiceExtensions).Assembly);
             services.AddScoped<IAddOrderService, OrderService>();
