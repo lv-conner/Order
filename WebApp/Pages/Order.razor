@@ -51,10 +51,15 @@ else
         </tbody>
     </table>
 }
+@if (LoadError)
+{
+    <p><em>Load data error</em></p>
+}
 
 @code {
     List<OrderDto> OrderDatas;
     bool ShowForm = false;
+    bool LoadError = false;
     protected async override Task OnInitializedAsync()
     {
         await RefreshData();
@@ -86,16 +91,16 @@ else
         StateHasChanged();
         return Task.CompletedTask;
     }
-    private async Task SafeExecAsync(Func<Task> func,Action exceptionCallback=null)
+    private async Task SafeExecAsync(Func<Task> func, Action exceptionCallback = null)
     {
         try
         {
             await func();
         }
-        catch(Exception ex)
+        catch (Exception ex)
         {
+            LoadError = true;
             exceptionCallback?.Invoke();
-            NavigationManager.NavigateTo("error");
         }
     }
 }
