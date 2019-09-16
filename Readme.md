@@ -6,7 +6,9 @@
 - 3.Blazor类库目前尚不完善，微软当前只提供了服务端的模板。而客户端基于.net core的WebAssembly尚未提供。
 - 4.Blazor App的认证和授权。
 - 5.Grpc的认证和授权实现。
-- 6..Net Core 3.0中通过AddDbContext<TContext>添加EFContext到数据库中，添加迁移不起作用(提示找不到Context)。需实现IDesignTimeDbContextFactory<TContext>
+- 6. .Net Core 3.0中通过AddDbContext<TContext>添加EFContext到数据库中，添加迁移不起作用(提示找不到Context)。需实现IDesignTimeDbContextFactory<TContext>.
+- a.问题原因：这是由于引用的是EntityFrameworkCore版本为2.2.6而非preview9版本导致的。
+  b.解决办法：更新类库和生成工具引用。  
 ### 二、业务问题
 - 1.Order Id的生成，目前使用Guid值截断实现，如果需要提供全局统一的流水号，可以使用Orleans或者Redis实现一个Order Id生成器。
 - 2.目前没有日志记录、异常跟踪等功能。

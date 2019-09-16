@@ -31,7 +31,7 @@ namespace OrderGrpcServiceHost
             {
                 options.UseSqlServer(_configuration.GetValue<string>("OrderConnectionString"), config =>
                 {
-
+                    config.MigrationsAssembly(typeof(Startup).Assembly.FullName);
                 });
             });
         }
