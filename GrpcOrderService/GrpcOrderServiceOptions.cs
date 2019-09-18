@@ -11,7 +11,7 @@ namespace GrpcOrderService
         {
             get
             {
-                return GrpcOrderServiceAddres != null && GrpcOrderServiceAddres.ToString().StartsWith("https");
+                return GrpcOrderServiceAddres != null && GrpcOrderServiceAddres.Scheme == Uri.UriSchemeHttps;
             }
         }
     }
